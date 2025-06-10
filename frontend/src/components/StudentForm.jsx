@@ -7,7 +7,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
   const [formData, setFormData] = useState({
     subject: 'math',
     grade_level: 'elementary',
-    tone: 'professional',
+    tone: 'student-friendly',
     length: 'medium',
     customPrompt: '',
     focusAreas: []
@@ -70,10 +70,10 @@ const StudentForm = ({ onSubmit, isLoading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
       {/* Main Input */}
       <div>
-        <label htmlFor="originalFeedback" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="originalFeedback" className="block text-sm font-medium text-gray-200 mb-2">
           Original Feedback *
         </label>
         <textarea
@@ -82,17 +82,17 @@ const StudentForm = ({ onSubmit, isLoading }) => {
           onChange={(e) => setOriginalFeedback(e.target.value)}
           required
           rows={6}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
           placeholder="Paste your original feedback here for AI improvement..."
         />
       </div>
 
       {/* Options Toggle */}
-      <div className="border-t pt-4">
+      <div className="border-t border-gray-600 pt-4">
         <button
           type="button"
           onClick={() => setShowOptions(!showOptions)}
-          className="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium"
+          className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 font-medium"
         >
           <svg 
             className={`w-5 h-5 transform transition-transform ${showOptions ? 'rotate-90' : ''}`}
@@ -108,8 +108,8 @@ const StudentForm = ({ onSubmit, isLoading }) => {
 
       {/* Collapsible Options */}
       {showOptions && (
-        <div className="bg-gray-50 p-4 rounded-lg space-y-4">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Customization Options</h3>
+        <div className="bg-gray-900 p-4 rounded-lg space-y-4 border border-gray-600">
+          <h3 className="text-lg font-medium text-gray-200 mb-4">Customization Options</h3>
           
           {/* Option Toggle */}
           <div className="mb-4">
@@ -121,9 +121,9 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   value="standard"
                   checked={!showCustomPrompt}
                   onChange={() => setShowCustomPrompt(false)}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                  className="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-500 bg-gray-700"
                 />
-                <span className="ml-2 text-sm font-medium text-gray-700">Use Standard Options</span>
+                <span className="ml-2 text-sm font-medium text-gray-200">Use Standard Options</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -132,9 +132,9 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   value="custom"
                   checked={showCustomPrompt}
                   onChange={() => setShowCustomPrompt(true)}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                  className="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-500 bg-gray-700"
                 />
-                <span className="ml-2 text-sm font-medium text-gray-700">Use Custom Prompt</span>
+                <span className="ml-2 text-sm font-medium text-gray-200">Use Custom Prompt</span>
               </label>
             </div>
           </div>
@@ -144,7 +144,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-200 mb-2">
                   Subject
                 </label>
                 <select
@@ -152,7 +152,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 >
                   {subjects.map(subject => (
                     <option key={subject.value} value={subject.value}>
@@ -164,7 +164,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
 
               {/* Grade Level */}
               <div>
-                <label htmlFor="grade_level" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="grade_level" className="block text-sm font-medium text-gray-200 mb-2">
                   Grade Level
                 </label>
                 <select
@@ -172,7 +172,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   name="grade_level"
                   value={formData.grade_level}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 >
                   {gradeLevels.map(level => (
                     <option key={level.value} value={level.value}>
@@ -184,7 +184,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
 
               {/* Tone */}
               <div>
-                <label htmlFor="tone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="tone" className="block text-sm font-medium text-gray-200 mb-2">
                   Tone
                 </label>
                 <select
@@ -192,7 +192,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   name="tone"
                   value={formData.tone}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 >
                   <option value="professional">Professional</option>
                   <option value="encouraging">Encouraging</option>
@@ -205,7 +205,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
 
               {/* Length */}
               <div>
-                <label htmlFor="length" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="length" className="block text-sm font-medium text-gray-200 mb-2">
                   Length
                 </label>
                 <select
@@ -213,7 +213,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                   name="length"
                   value={formData.length}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 >
                   <option value="short">Short (1-2 sentences)</option>
                   <option value="medium">Medium (3-4 sentences)</option>
@@ -223,9 +223,9 @@ const StudentForm = ({ onSubmit, isLoading }) => {
             </div>
 
             {/* Focus Areas */}
-            <div className="border-t pt-4 mt-4">
-              <h4 className="text-sm font-medium text-gray-700 mb-3">Focus Areas</h4>
-              <p className="text-xs text-gray-500 mb-3">Select areas you want the AI to emphasize:</p>
+            <div className="border-t border-gray-600 pt-4 mt-4">
+              <h4 className="text-sm font-medium text-gray-200 mb-3">Focus Areas</h4>
+              <p className="text-xs text-gray-400 mb-3">Select areas you want the AI to emphasize:</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {focusAreaOptions.map(option => (
                   <label key={option.value} className="flex items-center space-x-2 text-sm">
@@ -233,9 +233,9 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                       type="checkbox"
                       checked={formData.focusAreas.includes(option.value)}
                       onChange={() => handleFocusAreaChange(option.value)}
-                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-500 bg-gray-700 rounded"
                     />
-                    <span className="text-gray-700">{option.label}</span>
+                    <span className="text-gray-200">{option.label}</span>
                   </label>
                 ))}
               </div>
@@ -244,7 +244,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
           ) : (
             /* Custom Prompt Section */
             <div>
-              <label htmlFor="customPrompt" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="customPrompt" className="block text-sm font-medium text-gray-200 mb-2">
                 Custom Prompt
               </label>
               <textarea
@@ -253,10 +253,10 @@ const StudentForm = ({ onSubmit, isLoading }) => {
                 value={formData.customPrompt}
                 onChange={handleChange}
                 rows={6}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
                 placeholder="Enter your custom prompt for AI improvement. Be specific about how you want the feedback to be improved (e.g., 'Make it more encouraging and specific', 'Add concrete examples', 'Focus on growth mindset', etc.)..."
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 This custom prompt will be used instead of the standard options above.
               </p>
             </div>
@@ -269,7 +269,7 @@ const StudentForm = ({ onSubmit, isLoading }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white font-medium py-3 px-8 rounded-md transition duration-200 flex items-center space-x-2"
+          className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-medium py-3 px-8 rounded-md transition duration-200 flex items-center space-x-2"
         >
           {isLoading ? (
             <>

@@ -33,14 +33,14 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg space-y-6">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-6 border border-gray-700">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-900">Generated Comment</h2>
+        <h2 className="text-xl font-semibold text-white">Generated Comment</h2>
         <div className="flex items-center space-x-2 text-sm text-gray-500">
-          <span className="bg-gray-100 px-2 py-1 rounded">
+          <span className="bg-gray-700 px-2 py-1 rounded text-gray-200">
             {comment.word_count} words
           </span>
-          <span className="bg-gray-100 px-2 py-1 rounded capitalize">
+          <span className="bg-gray-700 px-2 py-1 rounded capitalize text-gray-200">
             {comment.tone}
           </span>
         </div>
@@ -48,7 +48,7 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
 
       {/* Comment Text Area */}
       <div className="space-y-2">
-        <label htmlFor="comment-text" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="comment-text" className="block text-sm font-medium text-gray-200">
           Report Card Comment
         </label>
         <textarea
@@ -56,7 +56,7 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
           value={editedComment}
           onChange={handleCommentChange}
           rows={15}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-white placeholder-gray-400"
           placeholder="Your generated comment will appear here..."
         />
       </div>
@@ -65,7 +65,7 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
       <div className="flex flex-wrap gap-3">
         <button
           onClick={copyToClipboard}
-          className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200"
+          className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition duration-200 shadow-lg"
         >
           {copiedToClipboard ? (
             <>
@@ -88,9 +88,9 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
       {/* Teaching Suggestions */}
       {suggestions && suggestions.length > 0 && (
         <div className="border-t pt-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-3">Teaching Suggestions</h3>
-          <div className="bg-blue-50 p-4 rounded-md">
-            <p className="text-sm text-blue-800 mb-3">
+          <h3 className="text-lg font-medium text-white mb-3">Teaching Suggestions</h3>
+          <div className="bg-blue-900/30 p-4 rounded-md border border-blue-800">
+            <p className="text-sm text-blue-200 mb-3">
               Here are some strategies to help this student improve:
             </p>
             <ul className="space-y-2">
@@ -99,7 +99,7 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
                   <svg className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span className="text-sm text-blue-800">{suggestion}</span>
+                  <span className="text-sm text-blue-200">{suggestion}</span>
                 </li>
               ))}
             </ul>

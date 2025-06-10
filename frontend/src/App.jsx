@@ -58,14 +58,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-gray-800 shadow-lg border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-2xl font-bold text-white">
                   Report Card Helper
                 </h1>
               </div>
@@ -80,10 +80,10 @@ function App() {
           {/* Form Section */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-2">
+              <h2 className="text-lg font-medium text-white mb-2">
                 Feedback Input
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-300">
                 Paste your original feedback below to have AI improve it.
               </p>
             </div>
@@ -92,7 +92,7 @@ function App() {
 
             {/* Error Display */}
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <div className="bg-red-900/50 border border-red-600 rounded-md p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
                     <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -100,10 +100,10 @@ function App() {
                     </svg>
                   </div>
                   <div className="ml-3">
-                    <h3 className="text-sm font-medium text-red-800">
+                    <h3 className="text-sm font-medium text-red-200">
                       Error Improving Feedback
                     </h3>
-                    <div className="mt-2 text-sm text-red-700">
+                    <div className="mt-2 text-sm text-red-100">
                       <p>{error}</p>
                     </div>
                   </div>
@@ -115,10 +115,10 @@ function App() {
           {/* Comment Display Section */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-lg font-medium text-gray-900 mb-2">
+              <h2 className="text-lg font-medium text-white mb-2">
                 Improved Feedback
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-300">
                 Your AI-improved feedback will appear here.
               </p>
             </div>
@@ -130,10 +130,10 @@ function App() {
                 onRegenerate={handleRegenerate}
               />
             ) : (
-              <div className="bg-white p-8 rounded-lg shadow-lg border-2 border-dashed border-gray-300">
+              <div className="bg-gray-800 p-8 rounded-lg shadow-lg border-2 border-dashed border-gray-600">
                 <div className="text-center">
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">No feedback improved yet</h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <h3 className="mt-2 text-sm font-medium text-gray-200">No feedback improved yet</h3>
+                  <p className="mt-1 text-sm text-gray-400">
                     Paste your original feedback and click "Improve Feedback" to get started.
                   </p>
                 </div>

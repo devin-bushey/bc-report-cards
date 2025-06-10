@@ -5,5 +5,7 @@
 @layer base {
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: #111827;
+    color: #f9fafb;
   }
 }
