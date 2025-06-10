@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import StudentForm from './components/StudentForm';
 import CommentDisplay from './components/CommentDisplay';
+import CommentHistory from './components/CommentHistory';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
@@ -55,6 +56,15 @@ function App() {
     setGeneratedComment(null);
     setSuggestions([]);
     setError(null);
+  };
+
+  const handleRestoreComment = (commentText) => {
+    if (generatedComment) {
+      setGeneratedComment({
+        ...generatedComment,
+        comment: commentText
+      });
+    }
   };
 
   return (
@@ -140,6 +150,11 @@ function App() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* History Section - Full Width Below */}
+        <div className="mt-8">
+          <CommentHistory onRestoreComment={handleRestoreComment} />
         </div>
       </main>
     </div>

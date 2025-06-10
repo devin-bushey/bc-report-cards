@@ -3,13 +3,43 @@ import { useState, useEffect } from 'react';
 const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
   const [copiedToClipboard, setCopiedToClipboard] = useState(false);
   const [editedComment, setEditedComment] = useState(comment?.comment || '');
+  const [commentHistory, setCommentHistory] = useState([]);
 
-  // Update editedComment when a new comment is received
+  // Load history from localStorage on component mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('commentHistory');
+    if (savedHistory) {
+      setCommentHistory(JSON.parse(savedHistory));
+    }
+  }, []);
+
+  // Update editedComment and save to history when a new comment is received
   useEffect(() => {
     if (comment?.comment) {
       setEditedComment(comment.comment);
+      saveCommentToHistory(comment);
     }
   }, [comment?.comment]);
+
+  const saveCommentToHistory = (newComment) => {
+    const historyItem = {
+      id: Date.now(),
+      timestamp: new Date().toLocaleString(),
+      comment: newComment.comment,
+      originalComment: newComment.comment,
+      word_count: newComment.word_count,
+      tone: newComment.tone,
+      subject: newComment.subject || 'Unknown',
+      grade_level: newComment.grade_level || 'Unknown'
+    };
+
+    const updatedHistory = [historyItem, ...commentHistory].slice(0, 20); // Keep only last 20 items
+    setCommentHistory(updatedHistory);
+    localStorage.setItem('commentHistory', JSON.stringify(updatedHistory));
+    
+    // Dispatch event to notify other components
+    window.dispatchEvent(new CustomEvent('commentHistoryUpdated'));
+  };
 
   const copyToClipboard = async () => {
     try {
@@ -22,9 +52,25 @@ const CommentDisplay = ({ comment, suggestions, onEdit, onRegenerate }) => {
   };
 
   const handleCommentChange = (e) => {
-    setEditedComment(e.target.value);
+    const newValue = e.target.value;
+    setEditedComment(newValue);
+    
+    // Update the most recent history entry if it exists
+    if (commentHistory.length > 0) {
+      const updatedHistory = [...commentHistory];
+      updatedHistory[0] = {
+        ...updatedHistory[0],
+        comment: newValue
+      };
+      setCommentHistory(updatedHistory);
+      localStorage.setItem('commentHistory', JSON.stringify(updatedHistory));
+      
+      // Dispatch event to notify other components
+      window.dispatchEvent(new CustomEvent('commentHistoryUpdated'));
+    }
+    
     if (onEdit) {
-      onEdit(e.target.value);
+      onEdit(newValue);
     }
   };
 
