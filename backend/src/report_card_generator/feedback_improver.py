@@ -84,9 +84,10 @@ class FeedbackImprover:
         - Read the original feedback and use a similar writing style in your improved feedback.
         - The improved feedback should still sound like the person who wrote the original feedback.
         - Favor smaller adjustments as opposed to full rewrites.
+        - Avoid sophisticated vocabulary and jargon in your improved feedback.
 
         Consider the following when improving the original feedback:
-        - Length: {length_guidelines[length]}
+        - Length: {length_guidelines[length]}. Do not make the sentences too long. Be concise.
         - Tone: {tone}"""
 
         if subject and subject != 'other':
