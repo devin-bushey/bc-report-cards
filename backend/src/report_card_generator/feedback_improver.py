@@ -85,6 +85,7 @@ class FeedbackImprover:
         - The improved feedback should still sound like the person who wrote the original feedback.
         - Favor smaller adjustments as opposed to full rewrites.
         - Avoid sophisticated vocabulary and jargon in your improved feedback.
+        - Do NOT use the word 'commendable` in your response
 
         Consider the following when improving the original feedback:
         - Length: {length_guidelines[length]}. Do not make the sentences too long. Be concise.
