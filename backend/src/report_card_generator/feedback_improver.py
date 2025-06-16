@@ -81,6 +81,11 @@ class FeedbackImprover:
         Original feedback: {original_feedback}
 
         Improvement guidelines:
+        - Read the original feedback and use a similar writing style in your improved feedback.
+        - The improved feedback should still sound like the person who wrote the original feedback.
+        - Favor smaller adjustments as opposed to full rewrites.
+
+        Consider the following when improving the original feedback:
         - Length: {length_guidelines[length]}
         - Tone: {tone}"""
 
